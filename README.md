@@ -1,1 +1,1 @@
-# HYF JS2 W1, SPA working with gitHub's API
+# HYF JS3 W1, SPA working with gitHub's API
