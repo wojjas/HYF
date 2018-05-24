@@ -4,6 +4,17 @@ function main() {
   getDataFromServer(HyfReposHttps, repositoriesCallback);
 }
 
+/**
+ * Remove all child nodes to specified parent node
+ * 
+ * @param {string} parentNode 
+ */
+function removeChildNodes(parentNode) {
+  while (parentNode.firstChild) {
+      parentNode.removeChild(parentNode.firstChild);
+  }
+}
+
 var repositories = [];
 
 // Callback that handles response from server
@@ -37,8 +48,9 @@ function showRepository(repositoryId) {
     return repository.id === Number.parseInt(repositoryId);
   })[0];
 
-  const repositoryInfo = document.querySelector('.repository-info');
-  repositoryInfo.innerHTML = `<strong>Repository:</strong><span>${selectedRepository.name}</span> <br>
+  const repositoryInfoElement = document.querySelector('.repository-info');
+  removeChildNodes(repositoryInfoElement);  
+  repositoryInfoElement.innerHTML = `<strong>Repository:</strong><span>${selectedRepository.name}</span> <br>
                                 <strong>Description:</strong><span>${selectedRepository.description}</span> <br>
                                 <strong>Forks:</strong><span>${selectedRepository.forks}</span> <br>
                                 <strong>Updated:</strong><span>${selectedRepository.updated_at}</span>`;
@@ -57,6 +69,7 @@ function getContributors(repositoryId) {
 function showContributors(contributorsData) {
   const contributors = JSON.parse(contributorsData);
   const contributorsListElement = document.querySelector(".contributors-list");
+  removeChildNodes(contributorsListElement);
 
   contributors.forEach(contributor => {
     const listItemElement = document.createElement("li");
