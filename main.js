@@ -67,10 +67,10 @@ function showRepository(repositoryId) {
 
   const repositoryInfoElement = document.querySelector('.repository-info');
   removeChildNodes(repositoryInfoElement);  
-  repositoryInfoElement.innerHTML = `<strong>Repository:</strong><span>${selectedRepository.name}</span> <br>
-                                <strong>Description:</strong><span>${selectedRepository.description}</span> <br>
-                                <strong>Forks:</strong><span>${selectedRepository.forks}</span> <br>
-                                <strong>Updated:</strong><span>${selectedRepository.updated_at}</span>`;
+  repositoryInfoElement.innerHTML = `<strong class="repository-info-label">Repository:</strong><span class="repository-info-value">${selectedRepository.name}</span> <br>
+                                <strong class="repository-info-label">Description:</strong><span class="repository-info-value">${selectedRepository.description}</span> <br>
+                                <strong class="repository-info-label">Forks:</strong><span class="repository-info-value">${selectedRepository.forks}</span> <br>
+                                <strong class="repository-info-label">Updated:</strong><span class="repository-info-value">${selectedRepository.updated_at}</span>`;
 }
 
 /**
