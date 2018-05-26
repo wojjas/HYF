@@ -1,3 +1,24 @@
 body {
     background: bisque;
+    margin: 1em;
+}
+.header {
+    background: #ffd4a2;
+}
+label {
+    margin-right: 1em;
+}
+
+.repository-info{
+    display: inline-block;
+}
+
+.contributors{
+    display: inline-block;
+}
+.contributors-list{
+    
+}
+ul {
+    list-style-type: none;  /*removes bullet*/
 }
