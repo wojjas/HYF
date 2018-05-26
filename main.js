@@ -5,7 +5,12 @@ function main() {
 }
 
 /**
- * Remove all child nodes to specified parent node
+ * List with all HYF repositories.
+ */
+var repositories = [];
+
+/**
+ * Remove all child nodes to specified parent node.
  * 
  * @param {string} parentNode 
  */
@@ -15,9 +20,11 @@ function removeChildNodes(parentNode) {
   }
 }
 
-var repositories = [];
-
-// Callback that handles response from server
+/**
+ * Callback that handles response from server when getting repositories.
+ * 
+ * @param {String} data Data from server in JSON format.
+ */
 function repositoriesCallback(data) {
   repositories = JSON.parse(data);
   console.log(
@@ -26,6 +33,11 @@ function repositoriesCallback(data) {
   showRepositoriesInSelect(repositories);
 }
 
+/**
+ * Shows (renders to the DOM) all repositories in a select element.
+ * 
+ * @param {Object[]} repositories Array of repository objects. 
+ */
 function showRepositoriesInSelect(repositories) {
   const repositoriesSelectElement = document.querySelector("#repositories");
 
@@ -43,6 +55,11 @@ function showRepositoriesInSelect(repositories) {
   });
 }
 
+/**
+ * Shows (renders to the DOM) information about a repository.
+ * 
+ * @param {String} repositoryId Unique repository identifier.
+ */
 function showRepository(repositoryId) {
   const selectedRepository = repositories.filter(repository => {
     return repository.id === Number.parseInt(repositoryId);
@@ -56,6 +73,11 @@ function showRepository(repositoryId) {
                                 <strong>Updated:</strong><span>${selectedRepository.updated_at}</span>`;
 }
 
+/**
+ * Gets all contributors for a repository.
+ * 
+ * @param {String} repositoryId Unique repository identifier.
+ */
 function getContributors(repositoryId) {
   const selectedRepository = repositories.filter(repository => {
     return repository.id === Number.parseInt(repositoryId);
@@ -66,6 +88,11 @@ function getContributors(repositoryId) {
   });
 }
 
+/**
+ * Shows (renders to the DOM) a list of contributors.
+ * 
+ * @param {String} contributorsData Data about contributors in JSON format.
+ */
 function showContributors(contributorsData) {
   const contributors = JSON.parse(contributorsData);
   const contributorsListElement = document.querySelector(".contributors-list");
@@ -79,7 +106,12 @@ function showContributors(contributorsData) {
   });
 }
 
-// Function that makes an server request (API call)
+/**
+ * Gets data from an API end-point.
+ * 
+ * @param {String} theUrl The url to request from.
+ * @param {String} callback The callback to call upon successful receive of data from server.
+ */
 function getDataFromServer(theUrl, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
