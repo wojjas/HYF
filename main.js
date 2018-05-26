@@ -16,7 +16,7 @@ var repositories = [];
  */
 function removeChildNodes(parentNode) {
   while (parentNode.firstChild) {
-      parentNode.removeChild(parentNode.firstChild);
+    parentNode.removeChild(parentNode.firstChild);
   }
 }
 
@@ -66,11 +66,15 @@ function showRepository(repositoryId) {
   })[0];
 
   const repositoryInfoElement = document.querySelector('.repository-info');
-  removeChildNodes(repositoryInfoElement);  
-  repositoryInfoElement.innerHTML = `<strong class="repository-info-label">Repository:</strong><span class="repository-info-value">${selectedRepository.name}</span> <br>
-                                <strong class="repository-info-label">Description:</strong><span class="repository-info-value">${selectedRepository.description}</span> <br>
-                                <strong class="repository-info-label">Forks:</strong><span class="repository-info-value">${selectedRepository.forks}</span> <br>
-                                <strong class="repository-info-label">Updated:</strong><span class="repository-info-value">${selectedRepository.updated_at}</span>`;
+  removeChildNodes(repositoryInfoElement);
+  repositoryInfoElement.innerHTML = `
+    <ul>
+      <li class="repository-info-item"><strong>Repository:</strong><span>${selectedRepository.name}</span></li>
+      <li class="repository-info-item"><strong>Description:</strong><span>${selectedRepository.description}</span></li>
+      <li class="repository-info-item"><strong>Forks:</strong><span>${selectedRepository.forks}</span></li>
+      <li class="repository-info-item"><strong>Updated:</strong><span>${selectedRepository.updated_at}</span></li>
+    </ul>
+  `;
 }
 
 /**
@@ -100,7 +104,7 @@ function showContributors(contributorsData) {
 
   contributors.forEach(contributor => {
     const listItemElement = document.createElement("li");
-    listItemElement.innerHTML = `<img width="100px" src="${contributor.avatar_url}"> <span>${contributor.login}</span> <span>${contributor.contributions}</span>`;
+    listItemElement.innerHTML = `<div class="contributor-info"><img width="100px" src="${contributor.avatar_url}"><span class="contributor-login">${contributor.login}</span><span class="contributor-contributions">${contributor.contributions}</span></div>`;
 
     contributorsListElement.appendChild(listItemElement);
   });
