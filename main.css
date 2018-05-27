@@ -1,10 +1,14 @@
 body {
     background: bisque;
-    margin: 1em;
+    padding: 0;
+    margin: 0;
+    max-width: 75%;
+    margin: 0 auto;
 }
 .header {
     background: #ffd4a2;
     grid-column: auto/span 2;
+    padding: 1rem;
 }
 label {
     margin-right: 1em;
@@ -12,10 +16,12 @@ label {
 
 .repository-info{
     display: inline-block;
+    padding: 1rem;
 }
 
 .contributors{
     display: inline-block;
+    padding: 1rem;
 }
 
 ul {
