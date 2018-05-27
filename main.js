@@ -7,7 +7,7 @@ function main() {
 /**
  * List with all HYF repositories.
  */
-var repositories = [];
+var repositories = null;
 
 /**
  * Remove all child nodes to specified parent node.
@@ -26,9 +26,10 @@ function removeChildNodes(parentNode) {
  * @param {String} data Data from server in JSON format.
  */
 function repositoriesCallback(data) {
-  repositories = JSON.parse(data);
+  const dataArray = JSON.parse(data);
+  repositories = new Map(dataArray.map(repository => [(repository.id).toString(), repository]));
   console.log(
-    `Received and parsed ${repositories.length} repositories from server.`
+    `Received and parsed ${repositories.size} repositories from server.`
   );
   showRepositoriesInSelect(repositories);
 }
@@ -61,9 +62,7 @@ function showRepositoriesInSelect(repositories) {
  * @param {String} repositoryId Unique repository identifier.
  */
 function showRepository(repositoryId) {
-  const selectedRepository = repositories.filter(repository => {
-    return repository.id === Number.parseInt(repositoryId);
-  })[0];
+  const selectedRepository = repositories.get(repositoryId);
 
   const repositoryInfoElement = document.querySelector('.repository-info');
   removeChildNodes(repositoryInfoElement);
@@ -83,9 +82,7 @@ function showRepository(repositoryId) {
  * @param {String} repositoryId Unique repository identifier.
  */
 function getContributors(repositoryId) {
-  const selectedRepository = repositories.filter(repository => {
-    return repository.id === Number.parseInt(repositoryId);
-  })[0];
+  const selectedRepository = repositories.get(repositoryId);
 
   getDataFromServer(selectedRepository.contributors_url, data => {
     showContributors(data);
