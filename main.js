@@ -104,7 +104,12 @@ function showContributors(contributorsData) {
 
   contributors.forEach(contributor => {
     const listItemElement = document.createElement("li");
-    listItemElement.innerHTML = `<div class="contributor-info"><img width="100px" src="${contributor.avatar_url}"><span class="contributor-login">${contributor.login}</span><span class="contributor-contributions">${contributor.contributions}</span></div>`;
+    listItemElement.classList.add('contributor-info-item');
+    listItemElement.innerHTML = `
+        <img width="100px" src="${contributor.avatar_url}">
+        <span class="contributor-login">${contributor.login}</span>
+        <span class="contributor-contributions">${contributor.contributions}</span>
+    `;
 
     contributorsListElement.appendChild(listItemElement);
   });

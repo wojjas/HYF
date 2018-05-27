@@ -4,6 +4,7 @@ body {
 }
 .header {
     background: #ffd4a2;
+    grid-column: auto/span 2;
 }
 label {
     margin-right: 1em;
@@ -16,9 +17,8 @@ label {
 .contributors{
     display: inline-block;
 }
-.contributors-list{
-    
-}
+
 ul {
     list-style-type: none;  /*removes bullet*/
+    padding: 0;             /*removes indent*/
 }

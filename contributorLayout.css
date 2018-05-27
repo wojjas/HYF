@@ -1,0 +1,9 @@
+.contributor-info-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 0.5rem;
+    
+    border: 1px solid saddlebrown;
+    margin-bottom: 0.8rem;
+    line-height: 100px; /*same as height of avatar will vertically align text*/
+}
