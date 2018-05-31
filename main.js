@@ -1,6 +1,7 @@
 function main() {
   const HyfReposHttps = "https://api.github.com/orgs/HackYourFuture/repos";
 
+  getAndShowRateLimit();
   getDataFromServer(HyfReposHttps, repositoriesCallback);
 }
 
@@ -32,6 +33,7 @@ function repositoriesCallback(data) {
     `Received and parsed ${repositories.size} repositories from server.`
   );
   showRepositoriesInSelect(repositories);
+  getAndShowRateLimit();
 }
 
 /**
@@ -86,6 +88,7 @@ function getContributors(repositoryId) {
 
   getDataFromServer(selectedRepository.contributors_url, data => {
     showContributors(data);
+    getAndShowRateLimit();
   });
 }
 
@@ -109,6 +112,18 @@ function showContributors(contributorsData) {
     `;
 
     contributorsListElement.appendChild(listItemElement);
+  });
+}
+
+/**
+ * Number of allowed server requests is limited. This call is for free and gets status of this limit.
+ * See more here: https://developer.github.com/v3/rate_limit/
+ */
+function getAndShowRateLimit(){
+  getDataFromServer('https://api.github.com/rate_limit', response => {
+    const rateLimitData = JSON.parse(response); 
+    console.log('rate-limit, remaining: ', rateLimitData.rate.remaining);
+    console.log('rate-limit resets at:  ', new Date(rateLimitData.rate.reset * 1000));
   });
 }
 
