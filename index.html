@@ -10,14 +10,19 @@
     <link rel="stylesheet" type="text/css" media="screen" href="mainLayout.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="repositoryInfoLayout.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="contributorLayout.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="headerLayout.css" />
     <script src="main.js"></script>
 </head>
 
 <body onload="main()">
     <div class="root">
-        <div class="header">
+        <div class="repositories-select">
             <label for="repositories">HYF Repositories</label>
             <select id="repositories"></select>
+        </div>
+        <div class="rate-limit">
+            <span class="remaining"></span>
+            <span class="resets-at"></span>
         </div>
         <div class="repository-info"></div>
         <div class="contributors">

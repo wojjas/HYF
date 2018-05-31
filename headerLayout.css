@@ -1,0 +1,15 @@
+.header {
+    grid-template-columns: 1fr 1fr;
+    background: #ffd4a2;
+    grid-column: auto/span 2;
+    padding: 1rem;
+}
+
+.rate-limit{
+    grid-column: 2/2;
+    grid-row: 1/1;
+}
+
+.remaining{
+    margin-right: 2em;
+}

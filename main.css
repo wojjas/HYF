@@ -5,11 +5,6 @@ body {
     max-width: 75%;
     margin: 0 auto;
 }
-.header {
-    background: #ffd4a2;
-    grid-column: auto/span 2;
-    padding: 1rem;
-}
 label {
     margin-right: 1em;
 }

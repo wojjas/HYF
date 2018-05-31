@@ -119,12 +119,29 @@ function showContributors(contributorsData) {
  * Number of allowed server requests is limited. This call is for free and gets status of this limit.
  * See more here: https://developer.github.com/v3/rate_limit/
  */
-function getAndShowRateLimit(){
+function getAndShowRateLimit() {
   getDataFromServer('https://api.github.com/rate_limit', response => {
-    const rateLimitData = JSON.parse(response); 
+    const rateLimitData = JSON.parse(response);
     console.log('rate-limit, remaining: ', rateLimitData.rate.remaining);
     console.log('rate-limit resets at:  ', new Date(rateLimitData.rate.reset * 1000));
+
+    const remainingElement = document.querySelector('.remaining');
+    remainingElement.innerHTML = `<strong>Remaining:</strong> ${rateLimitData.rate.remaining}`;
+
+    const resetsAtElement = document.querySelector('.resets-at');
+    const resetTimeStamp = new Date(rateLimitData.rate.reset * 1000);
+    resetsAtElement.innerHTML = `<strong>New ${rateLimitData.rate.limit} given at: </strong> ${prependZeroIfNeeded(resetTimeStamp.getHours())}:${prependZeroIfNeeded(resetTimeStamp.getMinutes())}`;
   });
+}
+
+/**
+ * Prepends a "0" if needed. When minutes is 5 for instance, "05" will be returned. Useful when building timestamp in format "HH:mm:ss".
+ * 
+ * @param {Number} timeQuantityNumber Number of minutes, hours or seconds.
+ * @returns {String} The given number prepended with a zero if needed.
+ */
+function prependZeroIfNeeded(timeQuantityNumber) {
+  return timeQuantityNumber < 10 ? "0" + timeQuantityNumber : timeQuantityNumber.toString();
 }
 
 /**
